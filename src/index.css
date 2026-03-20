@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-bg:      #fff4df;
+  --color-primary: #938979;
+  --color-accent:  #c5b8a7;
+  --color-text:    #938979;
+  --color-muted:   #c5b8a7;
+  --font-base:     'Roboto', Arial, sans-serif;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Tablet — 768px y tamaños menores */
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    text-align: left;
+  }
+  .hero-visual {
+    display: none !important;
+  }
+}
+
+/* Mobile — 480px y tamaños menores */
+@media (max-width: 480px) {
+  .hero-grid {
+    gap: 1rem !important;
+  }
+}
