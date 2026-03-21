@@ -1,22 +1,25 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 10)
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
+
+  const navLinks = ["Home", "About", "Work", "Contact"]
 
   return (
-    <header style={{
-      position: "fixed",
-      top: 0,
-      left: 0,
-      right: 0,
-      zIndex: 100,
-      backgroundColor: "var(--color-bg)",
-    }}>
-
+    <header
+      className={`navbar-header${scrolled ? " navbar-scrolled" : ""}`}
+    >
       <div className="navbar-inner">
 
-        <Link to="/">
+        <Link to="/" className="navbar-brand">
           <img
             src="/src/assets/svg/brand.svg"
             alt="Chaneke"
@@ -24,6 +27,18 @@ export default function Navbar() {
             style={{ width: "auto", display: "block" }}
           />
         </Link>
+
+        <nav className="navbar-links">
+          {navLinks.map((item) => (
+            <Link
+              key={item}
+              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              className="navbar-link"
+            >
+              {item.toUpperCase()}
+            </Link>
+          ))}
+        </nav>
 
         <button
           className="navbar-hamburger"
@@ -85,7 +100,7 @@ export default function Navbar() {
           gap: "2.5rem",
           zIndex: 99,
         }}>
-          {["Home", "About", "Work", "Contact"].map((item) => (
+          {navLinks.map((item) => (
             <Link
               key={item}
               to={item === "Home" ? "/" : `/${item.toLowerCase()}`}

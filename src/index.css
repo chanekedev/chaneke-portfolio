@@ -23,9 +23,23 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ─── Navbar — desktop ─────────────────────── */
+/* ─── Navbar base ─────────────────────────── */
+.navbar-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--color-bg);
+  transition: box-shadow 0.4s ease;
+}
+
+.navbar-scrolled {
+  box-shadow: 0 2px 24px rgba(147, 137, 121, 0.18);
+}
+
 .navbar-logo {
-  height: 44px;         /* ← LOGO SIZE DESKTOP */
+  height: 44px;
 }
 
 .navbar-inner {
@@ -34,6 +48,7 @@ body {
   justify-content: center;
   position: relative;
   padding: 2rem 2.5rem;
+  transition: justify-content 0.3s ease, padding 0.3s ease;
 }
 
 .navbar-hamburger {
@@ -41,6 +56,45 @@ body {
   right: 2.5rem;
   top: 50%;
   transform: translateY(-50%);
+  opacity: 1;
+  transition: opacity 0.01s ease;
+}
+
+/* ─── Desktop nav links — hidden by default ── */
+.navbar-links {
+  display: none;
+}
+
+.navbar-link {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: 0.12em;
+  transition: opacity 0.2s ease;
+}
+
+.navbar-link:hover {
+  opacity: 0.5;
+}
+
+/* ─── Desktop scrolled state ───────────────── */
+@media (min-width: 769px) {
+  .navbar-scrolled .navbar-inner {
+    justify-content: space-between;
+    padding: 1rem 2.5rem;
+  }
+  .navbar-scrolled .navbar-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+  }
+.navbar-scrolled .navbar-hamburger {
+  opacity: 0;
+  pointer-events: none;
+}
+  .navbar-scrolled .navbar-brand {
+    justify-content: flex-start;
+  }
 }
 
 /* ─── Hero text — desktop ──────────────────── */
@@ -111,13 +165,226 @@ body {
   .social-icon-link { width: 48px; height: 48px; } /* ← ICON SIZE MOBILE */
   .social-icon-img  { width: 48px; height: 48px; } /* ← ICON SIZE MOBILE */
 }
-/* ─── About section ────────────────────────── */
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+/*─────────────────────────────────────────────*/
+/* ─── About section ──────────────────────── */
 .about-section {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 4rem);
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  overflow: hidden;
 }
+
+.about-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  padding-top: 2rem;
+}
+
+.about-cv-btn {
+  display: inline-block;
+  padding: 0.45rem 1.4rem;
+  border: 1.5px solid var(--color-primary);
+  border-radius: 999px;
+  font-size: 0.72rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 900;
+}
+
+/* ─── About 3 column grid ───────────────────── */
+.about-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  align-items: center;
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  gap: 0;
+}
+
+.about-col-left,
+.about-col-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 14rem;
+}
+
+.about-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+/* ─── Connection lines SVG ──────────────────── */
+.about-connection-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  overflow: visible;
+}
+
+/* ─── Computer size ─────────────────────────── */
+.about-computer {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ─── Animations ─────────────────────────────── */
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.4s; }
+.anim-delay-4 { transition-delay: 0.6s; }
+.anim-delay-5 { transition-delay: 0.8s; }
+.anim-delay-6 { transition-delay: 1.0s; }
+
+/* ─── CRT turn on ────────────────────────────── */
+@keyframes crt-on {
+  0%   { opacity: 0; transform: scaleY(0.02) scaleX(0.8); filter: brightness(3); }
+  20%  { opacity: 1; transform: scaleY(0.02) scaleX(1);   filter: brightness(3); }
+  60%  { opacity: 1; transform: scaleY(1)    scaleX(1);   filter: brightness(1.5); }
+  100% { opacity: 1; transform: scaleY(1)    scaleX(1);   filter: brightness(1); }
+}
+
+.crt-screen { opacity: 0; }
+.crt-screen.crt-active {
+  animation: crt-on 0.6s ease-out forwards;
+}
+
+/* ─── CRT overlay position — desktop ────────── */
+.crt-overlay {
+  top: 13%;
+  left: 35%;                          /* ← add this */
+  transform: translateX(-50%);
+  width: 30%;    /* ← overlay WIDTH on desktop */
+  height: 30%;   /* ← overlay HEIGHT on desktop */
+}
+
+/* ─── CRT brand logo size — desktop ─────────── */
+.crt-brand-logo {
+  width: 55%;    /* ← logo SIZE on desktop */
+}
+
+/* ─── Connection lines draw ─────────────────── */
+.connection-line {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  transition: stroke-dashoffset 0.8s ease;
+}
+.connection-line.line-active {
+  stroke-dashoffset: 0;
+}
+
+/* ─── Skill boxes ────────────────────────────── */
+.skill-box {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.skill-box.skill-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Mobile skills grid ─────────────────────── */
+.about-mobile-skills {
+  display: none;
+}
+
+/* ─── Hero section padding ──────────────────── */
+.hero-section { padding-top: 8rem; }
+.hero-content { padding-left: 3rem; }
+
+/* ─── Tablet — max 768px — hero + navbar only ── */
+@media (max-width: 768px) {
+  .hero-section  { padding-top: 6rem; }
+  .hero-content  { padding-left: 0; }
+  .crt-overlay {
+    top: 8%;
+    left: 28%;
+    width: 44%;
+    height: 42%;
+  }
+  .crt-brand-logo {
+    width: 60%;
+  }
+}
+
+/* ─── About section — switch to mobile layout ── */
+@media (max-width: 1200px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-col-left,
+  .about-col-right {
+    display: none !important;
+  }
+  .about-connection-lines {
+    display: none !important;
+  }
+  .about-computer {
+    width: 60vw !important;
+    margin: 0 auto;
+    display: block;
+  }
+  .about-mobile-skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    padding: 0.5rem 1.5rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* ─── Mobile — max 480px ───────────────────── */
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: clamp(9rem, 15vw, 8rem);
+  }
+  .hero-content { padding-left: 0; }
+  .about-mobile-skills {
+    grid-template-columns: 1fr !important;
+  }
+  .about-header {
+    padding-top: 1rem;
+  }
+  .crt-overlay {
+    align-self:auto;
+    width: 20;
+    height: 20vw;
+  }
+  .crt-brand-logo {
+    width: 100%;  /* ← mobile logo size */
+  }
+}
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 /* ─── Hero section padding ──────────────────── */
 .hero-section {
@@ -143,5 +410,127 @@ body {
   }
   .hero-content {
     padding-left: 0;    /* ← resets on mobile */
+  }
+}
+
+/*--****************************************************************--*/
+/*--****************************************************************--*/
+
+/* ─── "ABOUT" Animaciones :w ─────────────── */
+
+/* Base hidden state for all animated elements */
+.anim-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered delays for sequential reveals */
+.anim-delay-1 { transition-delay: 0.1s; }
+.anim-delay-2 { transition-delay: 0.2s; }
+.anim-delay-3 { transition-delay: 0.4s; }
+.anim-delay-4 { transition-delay: 0.6s; }
+.anim-delay-5 { transition-delay: 0.8s; }
+.anim-delay-6 { transition-delay: 1.0s; }
+
+/* CRT TV turn-on effect */
+@keyframes crt-on {
+  0%   { opacity: 0; transform: scaleY(0.02) scaleX(0.8); filter: brightness(3); }
+  20%  { opacity: 1; transform: scaleY(0.02) scaleX(1);   filter: brightness(3); }
+  60%  { opacity: 1; transform: scaleY(1)    scaleX(1);   filter: brightness(1.5); }
+  100% { opacity: 1; transform: scaleY(1)    scaleX(1);   filter: brightness(1); }
+}
+
+.crt-screen {
+  opacity: 0;
+}
+
+.crt-screen.crt-active {
+  /* ─── CRT overlay position + logo size ──────── */
+.crt-overlay {
+  top: 8%;          /* ← move up/down on desktop */
+  left: 28%;        /* ← move left/right on desktop */
+  width: 44%;       /* ← overlay width on desktop */
+  height: 42%;      /* ← overlay height on desktop */
+    background: rgba(255, 0, 0, 0.3);  /* ← add this temporarily */
+}
+
+.crt-brand-logo {
+  width: 55%;       /* ← logo size on desktop */
+}
+
+@media (max-width: 768px) {
+.crt-overlay {
+  top: 8%;
+  left: 28%;
+  width: 44%;
+  height: 42%;
+
+}
+  .crt-brand-logo {
+    width: 60%;     /* ← logo size on tablet */
+  }
+}
+
+@media (max-width: 100px) {
+  .crt-overlay {
+    top: 10%;        /* ← move up/down on mobile */
+    left: 30%;      /* ← move left/right on mobile */
+    width: 8%;     /* ← overlay width on mobile */
+    height: 10%;    /* ← overlay height on mobile */
+    
+  }
+  .crt-brand-logo {
+    width: 6%;     /* ← logo size on mobile */
+  }
+}
+}
+
+/* Connection lines — SVG draw effect */
+.connection-line {
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  transition: stroke-dashoffset 0.8s ease;
+}
+
+.connection-line.line-active {
+  stroke-dashoffset: 0;
+}
+
+/* Skill boxes */
+.skill-box {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.skill-box.skill-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── About responsive ──────────────────────── */
+@media (max-width: 768px) {
+  .about-computer {
+    width: 85vw !important;
+    
+  }
+  .about-skills-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  .about-connection-lines {
+    display: none !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-skills-grid {
+    grid-template-columns: 1fr !important;
   }
 }
