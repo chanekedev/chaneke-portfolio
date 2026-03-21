@@ -11,15 +11,12 @@ export default function Layout() {
       backgroundColor: 'var(--color-bg)',
     }}>
       <Navbar />
-      <main style={{
-        flex: 1,
-        maxWidth: '1100px',
-        width: '100%',
-        margin: '0 auto',
-        padding: '3rem 2rem',
-      }}>
-        <Outlet />
-      </main>
+    <main style={{
+  flex: 1,
+  width: "100%",
+}}>
+  <Outlet />
+</main>
       <Footer />
     </div>
   )

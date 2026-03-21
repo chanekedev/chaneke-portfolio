@@ -7,15 +7,17 @@ export default function Hero() {
   ]
 
   return (
-  <section style={{
-        minHeight: "100vh",
-        display: "flex",
-        alignItems: "flex-start",
-        paddingTop: "clamp(3rem, 5vw, 5rem)",
-        paddingBottom: "4rem",
-        paddingLeft: "clamp(1.5rem, 5vw, 4rem)",
-        paddingRight: "clamp(1.5rem, 5vw, 4rem)",
-}}>
+<section
+  className="hero-section"
+  style={{
+    height: "auto",
+    display: "flex",
+    alignItems: "flex-start",
+    paddingBottom: "3rem",
+    paddingTop: "9.5rem",
+    paddingLeft: "clamp(1.2rem, 5vw, 20rem)",
+    paddingRight: "clamp(1.2rem, 5vw, 20rem)",
+    }}>
       <div className="hero-grid" style={{
         width: "100%",
         maxWidth: "1200px",
@@ -26,79 +28,88 @@ export default function Hero() {
         gap: "2rem",
       }}>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+        <div className="hero-content" style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        }}>
 
-    <h1 style={{
-        fontSize: "clamp(1rem, 3vw, 3rem)",
-        color: "var(--color-primary)",
-        lineHeight: "1.1",
-        textTransform: "uppercase",
-        display: "inline",
-        flexDirection: "column",
-    }}>
+          <img
+            src="/src/assets/svg/icon-brand.svg"
+            alt="Chaneke symbol"
+            className="hero-brand-mobile"
+            style={{ height: "auto" }}
+          />
+
+              <h1
+        className="hero-heading"
+        style={{
+          color: "var(--color-primary)",
+          lineHeight: "1.05",
+          textTransform: "uppercase",
+          display: "flex",
+          flexDirection: "column",
+        }}>
         <span>HOLA, MUNDO!</span>
-        <br/>
         <span>SOY CHANEKE.</span>
-</h1>
+      </h1>
 
-          <p style={{
-            fontSize: "clamp(1rem, 2vw, 2rem)",
-            color: "var(--color-primary)",
-            letterSpacing: "0.05em",
-            textTransform: "uppercase",
-            marginTop: "0.2rem",
-          }}>
-            JON CORTEZ
-          </p>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-            {["FRONTEND CREATIVO", "DISEÑO PROFESIONAL", "ILUSTRACIÓN DIGITAL"].map((item) => (
-              <p key={item} style={{
-                fontSize: "clamp(0.7rem, 1.3vw, 0.95rem)",
-                color: "var(--color-primary)",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                lineHeight: "1.9",
-              }}>
-                {item}
+      <p
+        className="hero-name"
+        style={{
+          color: "var(--color-primary)",
+          letterSpacing: "0.05em",
+          textTransform: "uppercase",
+        }}>
+        [JON CORTEZ]
               </p>
-            ))}
-          </div>
+
+      <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+        {["FRONTEND CREATIVO", "DISEÑO PROFESIONAL", "ILUSTRACIÓN DIGITAL"].map((item) => (
+          <p
+            key={item}
+            className="hero-specialty"
+            style={{
+              color: "var(--color-primary)",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              lineHeight: "1.9",
+            }}>
+            {item}
+          </p>
+        ))}
+      </div>
 
           <div style={{
             display: "flex",
-            gap: "clamp(0.5rem, 2vw, 1.2rem)",
+            gap: "clamp(0.4rem, 2vw, 1.2rem)",
             marginTop: "0.6rem",
             flexWrap: "wrap",
           }}>
             {socials.map((social) => (
               <a
                 key={social.label}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={social.label}
-                style={{
-                  width: "clamp(40px, 6vw, 64px)",
-                  height: "clamp(40px, 6vw, 64px)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexShrink: 0,
-                  transition: "transform 0.2s ease",
-                }}
-                onMouseEnter={e => e.currentTarget.style.transform = "scale(1.2)"}
-                onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
-              >
-                <img
-                  src={social.icon}
-                  alt={social.label}
-                  style={{
-                    width: "clamp(40px, 6vw, 64px)",
-                    height: "clamp(40px, 6vw, 64px)",
-                  }}
-                />
-              </a>
+  href={social.href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={social.label}
+  className="social-icon-link"
+  style={{
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+    transition: "transform 0.2s ease",
+  }}
+  onMouseEnter={e => e.currentTarget.style.transform = "scale(1.2)"}
+  onMouseLeave={e => e.currentTarget.style.transform = "scale(1)"}
+>
+  <img
+    src={social.icon}
+    alt={social.label}
+    className="social-icon-img"
+  />
+</a>
             ))}
           </div>
 
@@ -114,12 +125,12 @@ export default function Hero() {
             alt="Chaneke symbol"
             style={{
               width: "100%",
-              maxWidth: "clamp(260px, 40vw, 540px)",
+              maxWidth: "clamp(200px, 50vw, 400px)",
               height: "auto",
             }}
           />
-        </div>
 
+        </div>
       </div>
     </section>
   )

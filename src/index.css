@@ -10,35 +10,138 @@
   --color-bg:      #fff4df;
   --color-primary: #938979;
   --color-accent:  #c5b8a7;
-  --color-text:    #938979;
-  --color-muted:   #c5b8a7;
-  --font-base:     'Roboto', Arial, sans-serif;
+  --font-base:     "Roboto", Arial, sans-serif;
 }
 
 body {
   background-color: var(--color-bg);
-  color: var(--color-text);
+  color: var(--color-primary);
   font-family: var(--font-base);
   font-weight: 900;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
 }
 
-/* Tablet — 768px y tamaños menores */
+/* ─── Navbar — desktop ─────────────────────── */
+.navbar-logo {
+  height: 44px;         /* ← LOGO SIZE DESKTOP */
+}
+
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem 2.5rem;
+}
+
+.navbar-hamburger {
+  position: absolute;
+  right: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ─── Hero text — desktop ──────────────────── */
+.hero-heading   { font-size: 3.5rem; }    /* ← HOLA MUNDO SIZE DESKTOP */
+.hero-name      { font-size: 2.33rem; }  /* ← JON CORTEZ SIZE DESKTOP */
+.hero-specialty { font-size: 1.33rem; }  /* ← SPECIALTIES SIZE DESKTOP */
+
+/* ─── Social icons — desktop ───────────────── */
+.social-icon-link { width: 50px; height: 50px; }  /* ← ICON SIZE DESKTOP */
+.social-icon-img  { width: 50px; height: 50px; }  /* ← ICON SIZE DESKTOP */
+
+/* ─── Brand symbol — desktop hidden ───────── */
+.hero-brand-mobile { display: none; }
+
+/* ─── Tablet — max 768px ───────────────────── */
 @media (max-width: 768px) {
   .hero-grid {
     grid-template-columns: 1fr !important;
-    text-align: left;
+    text-align: center;
+  }
+  .hero-content {
+    align-items: center !important;
   }
   .hero-visual {
     display: none !important;
   }
+  .navbar-logo    { height: 28px; }       /* ← LOGO SIZE TABLET */
+  .hero-heading   { font-size: 3.5rem; }  /* ← HOLA MUNDO SIZE TABLET */
+  .hero-name      { font-size: 1.1rem; }  /* ← JON CORTEZ SIZE TABLET */
+  .hero-specialty { font-size: 0.8rem; }  /* ← SPECIALTIES SIZE TABLET */
+  .social-icon-link { width: 48px; height: 48px; }  /* ← ICON SIZE TABLET */
+  .social-icon-img  { width: 48px; height: 48px; }  /* ← ICON SIZE TABLET */
 }
 
-/* Mobile — 480px y tamaños menores */
+/* ─── Mobile — max 480px ───────────────────── */
 @media (max-width: 480px) {
+  .navbar-inner {
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem 1.5rem 0.8rem;
+    gap: 0.6rem;
+  }
+  .navbar-hamburger {
+    position: static;
+    transform: none;
+    margin-top: 1rem;
+  }
+  .navbar-logo    { height: 45px; }      /* ← LOGO SIZE MOBILE */
   .hero-grid {
-    gap: 1rem !important;
+    gap: 0.8rem !important;
+  }
+  .hero-content {
+    align-items: center !important;
+  }
+  .hero-brand-mobile {
+    display: block;
+    width: 30vw;
+    margin: 2rem auto 1rem auto;
+    /*
+    margin: TOP auto BOTTOM auto
+    top    = space below hamburger
+    bottom = space above HOLA MUNDO
+    */
+  }
+  .hero-heading   { font-size: 2rem; }   /* ← HOLA MUNDO SIZE MOBILE */
+  .hero-name      { font-size: 1.5rem; } /* ← JON CORTEZ SIZE MOBILE */
+  .hero-specialty { font-size: 1.2rem; } /* ← SPECIALTIES SIZE MOBILE */
+  .social-icon-link { width: 48px; height: 48px; } /* ← ICON SIZE MOBILE */
+  .social-icon-img  { width: 48px; height: 48px; } /* ← ICON SIZE MOBILE */
+}
+/* ─── About section ────────────────────────── */
+.about-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.2rem, 5vw, 4rem);
+}
+
+/* ─── Hero section padding ──────────────────── */
+.hero-section {
+  padding-top: 8rem;
+}
+
+.hero-content {
+  padding-left: 3rem;   /* ← DESKTOP ONLY: increase to push text right */
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 6rem;
+  }
+  .hero-content {
+    padding-left: 0;    /* ← resets on tablet */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: clamp(6rem, 15vw, 8rem);
+  }
+  .hero-content {
+    padding-left: 0;    /* ← resets on mobile */
   }
 }

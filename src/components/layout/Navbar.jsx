@@ -12,67 +12,63 @@ export default function Navbar() {
       right: 0,
       zIndex: 100,
       backgroundColor: "var(--color-bg)",
-      padding: "clamp(1rem, 3vw, 1.5rem) clamp(1.5rem, 5vw, 2.5rem)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
     }}>
 
-      <Link to="/">
-        <img
-          src="/src/assets/svg/brand.svg"
-          alt="Chaneke"
-          style={{
-            height: "clamp(24px, 4vw, 36px)",
-            width: "auto",
-            display: "block",
-          }}
-        />
-      </Link>
+      <div className="navbar-inner">
 
-      <button
-        onClick={() => setMenuOpen(!menuOpen)}
-        style={{
-          position: "absolute",
-          right: "clamp(1.5rem, 5vw, 2.5rem)",
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          display: "flex",
-          flexDirection: "column",
-          gap: "5px",
-          padding: "4px",
-        }}
-        aria-label="Toggle menu"
-      >
-        <span style={{
-          display: "block",
-          width: "28px",
-          height: "2.5px",
-          backgroundColor: "var(--color-primary)",
-          borderRadius: "2px",
-          transition: "transform 0.3s",
-          transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
-        }} />
-        <span style={{
-          display: "block",
-          width: "28px",
-          height: "2.5px",
-          backgroundColor: "var(--color-primary)",
-          borderRadius: "2px",
-          transition: "opacity 0.3s",
-          opacity: menuOpen ? 0 : 1,
-        }} />
-        <span style={{
-          display: "block",
-          width: "28px",
-          height: "2.5px",
-          backgroundColor: "var(--color-primary)",
-          borderRadius: "2px",
-          transition: "transform 0.3s",
-          transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
-        }} />
-      </button>
+        <Link to="/">
+          <img
+            src="/src/assets/svg/brand.svg"
+            alt="Chaneke"
+            className="navbar-logo"
+            style={{ width: "auto", display: "block" }}
+          />
+        </Link>
+
+        <button
+          className="navbar-hamburger"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            display: "flex",
+            flexDirection: "column",
+            gap: "5px",
+            padding: "4px",
+          }}
+          aria-label="Toggle menu"
+        >
+          <span style={{
+            display: "block",
+            width: "26px",
+            height: "2.5px",
+            backgroundColor: "var(--color-primary)",
+            borderRadius: "2px",
+            transition: "transform 0.3s",
+            transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
+          }} />
+          <span style={{
+            display: "block",
+            width: "26px",
+            height: "2.5px",
+            backgroundColor: "var(--color-primary)",
+            borderRadius: "2px",
+            transition: "opacity 0.3s",
+            opacity: menuOpen ? 0 : 1,
+          }} />
+          <span style={{
+            display: "block",
+            width: "26px",
+            height: "2.5px",
+            backgroundColor: "var(--color-primary)",
+            borderRadius: "2px",
+            transition: "transform 0.3s",
+            transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
+          }} />
+        </button>
+
+      </div>
 
       {menuOpen && (
         <nav style={{
