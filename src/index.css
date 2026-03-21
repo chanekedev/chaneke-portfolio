@@ -215,6 +215,8 @@ body {
 
 .about-col-left,
 .about-col-right {
+  position: relative;
+  z-index: 1; 
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -228,7 +230,7 @@ body {
   position: relative;
 }
 
-/* ─── Connection lines SVG ──────────────────── */
+/* ─── Lineas de Conexión ──────────────────── */
 .about-connection-lines {
   position: absolute;
   top: 0;
@@ -236,7 +238,7 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
   overflow: visible;
 }
 
