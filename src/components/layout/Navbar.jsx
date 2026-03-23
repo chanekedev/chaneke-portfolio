@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
+import { NAV_LINKS, ASSETS } from "../../data/portfolio"
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -7,35 +8,32 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10)
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
-  const navLinks = ["Home", "About", "Work", "Contact"]
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+    return () => {
+      document.body.style.overflow = ""
+    }
+  }, [menuOpen])
 
   return (
-    <header
-      className={`navbar-header${scrolled ? " navbar-scrolled" : ""}`}
-    >
+    <header className={`navbar${scrolled ? " scrolled" : ""}`}>
       <div className="navbar-inner">
-
         <Link to="/" className="navbar-brand">
-          <img
-            src="/src/assets/svg/brand.svg"
-            alt="Chaneke"
-            className="navbar-logo"
-            style={{ width: "auto", display: "block" }}
-          />
+          <img src={ASSETS.brand} alt="Chaneke" className="navbar-logo" />
         </Link>
 
         <nav className="navbar-links">
-          {navLinks.map((item) => (
-            <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-              className="navbar-link"
-            >
-              {item.toUpperCase()}
+          {NAV_LINKS.map(({ label, path }) => (
+            <Link key={label} to={path} className="navbar-link">
+              {label.toUpperCase()}
             </Link>
           ))}
         </nav>
@@ -43,81 +41,38 @@ export default function Navbar() {
         <button
           className="navbar-hamburger"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: "column",
-            gap: "5px",
-            padding: "4px",
-          }}
           aria-label="Toggle menu"
+          aria-expanded={menuOpen}
         >
-          <span style={{
-            display: "block",
-            width: "26px",
-            height: "2.5px",
-            backgroundColor: "var(--color-primary)",
-            borderRadius: "2px",
-            transition: "transform 0.3s",
-            transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
-          }} />
-          <span style={{
-            display: "block",
-            width: "26px",
-            height: "2.5px",
-            backgroundColor: "var(--color-primary)",
-            borderRadius: "2px",
-            transition: "opacity 0.3s",
-            opacity: menuOpen ? 0 : 1,
-          }} />
-          <span style={{
-            display: "block",
-            width: "26px",
-            height: "2.5px",
-            backgroundColor: "var(--color-primary)",
-            borderRadius: "2px",
-            transition: "transform 0.3s",
-            transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
-          }} />
+          <span
+            className="hamburger-line"
+            style={{ transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }}
+          />
+          <span
+            className="hamburger-line"
+            style={{ opacity: menuOpen ? 0 : 1 }}
+          />
+          <span
+            className="hamburger-line"
+            style={{ transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }}
+          />
         </button>
-
       </div>
 
       {menuOpen && (
-        <nav style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "var(--color-bg)",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "2.5rem",
-          zIndex: 99,
-        }}>
-          {navLinks.map((item) => (
+        <nav className="mobile-menu">
+          {NAV_LINKS.map(({ label, path }) => (
             <Link
-              key={item}
-              to={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              key={label}
+              to={path}
+              className="mobile-menu-link"
               onClick={() => setMenuOpen(false)}
-              style={{
-                fontSize: "clamp(1.8rem, 6vw, 2.5rem)",
-                color: "var(--color-primary)",
-                textDecoration: "none",
-                letterSpacing: "0.1em",
-              }}
             >
-              {item.toUpperCase()}
+              {label.toUpperCase()}
             </Link>
           ))}
         </nav>
       )}
-
     </header>
   )
 }
