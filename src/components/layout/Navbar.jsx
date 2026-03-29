@@ -31,11 +31,17 @@ export default function Navbar() {
         </Link>
 
         <nav className="navbar-links">
-          {NAV_LINKS.map(({ label, path }) => (
-            <Link key={label} to={path} className="navbar-link">
-              {label.toUpperCase()}
-            </Link>
-          ))}
+          {NAV_LINKS.map(({ label, path }) =>
+            path.includes("#") ? (
+              <a key={label} href={path} className="navbar-link">
+                {label.toUpperCase()}
+              </a>
+            ) : (
+              <Link key={label} to={path} className="navbar-link">
+                {label.toUpperCase()}
+              </Link>
+            )
+          )}
         </nav>
 
         <button
@@ -61,16 +67,27 @@ export default function Navbar() {
 
       {menuOpen && (
         <nav className="mobile-menu">
-          {NAV_LINKS.map(({ label, path }) => (
-            <Link
-              key={label}
-              to={path}
-              className="mobile-menu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              {label.toUpperCase()}
-            </Link>
-          ))}
+          {NAV_LINKS.map(({ label, path }) =>
+            path.includes("#") ? (
+              <a
+                key={label}
+                href={path}
+                className="mobile-menu-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label.toUpperCase()}
+              </a>
+            ) : (
+              <Link
+                key={label}
+                to={path}
+                className="mobile-menu-link"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label.toUpperCase()}
+              </Link>
+            )
+          )}
         </nav>
       )}
     </header>

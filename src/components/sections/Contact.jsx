@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { SOCIALS } from "../data/portfolio"
-import { useIntersectionObserver } from "../hooks"
+import { SOCIALS } from "../../data/portfolio"
+import { useIntersectionObserver } from "../../hooks"
 
 const SUBJECTS = [
   { value: "", label: "Select a subject" },
@@ -60,16 +60,16 @@ export default function Contact() {
   }
 
   return (
-    <section className="contact-section">
+    <section id="contact" className="contact-section">
       <div ref={ref} className={`contact-container anim-fade-in${isVisible ? " anim-delay-1" : ""}`}>
         <div className="contact-info">
           <h2>LET'S COLLABORATE</h2>
           <p>
-            Have a project in mind? Let's create something amazing together. 
-            Whether it's web development, branding, or creative design, 
+            Have a project in mind? Let's create something amazing together.
+            Whether it's web development, branding, or creative design,
             I'm here to bring your vision to life.
           </p>
-          
+
           <div className="contact-socials">
             {SOCIALS.map((social) => (
               <a

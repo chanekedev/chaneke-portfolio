@@ -38,7 +38,11 @@ export default function Footer() {
           <ul>
             {NAV_LINKS.map(({ label, path }) => (
               <li key={label}>
-                <Link to={path}>{label}</Link>
+                {path.includes("#") ? (
+                  <a href={path}>{label}</a>
+                ) : (
+                  <Link to={path}>{label}</Link>
+                )}
               </li>
             ))}
           </ul>

@@ -2,7 +2,7 @@ export const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "About", path: "/about" },
   { label: "Work", path: "/work" },
-  { label: "Contact", path: "/contact" },
+  { label: "Contact", path: "/#contact" },
 ]
 
 export const SOCIALS = [
