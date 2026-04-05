@@ -25,52 +25,69 @@ export default function Navbar() {
 
   return (
     <header className={`navbar${scrolled ? " scrolled" : ""}`}>
-      <div className="navbar-inner">
-        <Link to="/" className="navbar-brand">
-          <img src={ASSETS.brand} alt="Chaneke" className="navbar-logo" />
+      <div className="navbarInner">
+        <Link to="/" className="navbarBrand">
+          <img src={ASSETS.brand} alt="Chaneke" className="navbarLogo" />
         </Link>
 
-        <nav className="navbar-links">
-          {NAV_LINKS.map(({ label, path }) => (
-            <Link key={label} to={path} className="navbar-link">
-              {label.toUpperCase()}
-            </Link>
-          ))}
+        <nav className="navbarLinks">
+          {NAV_LINKS.map(({ label, path }) =>
+            path.includes("#") ? (
+              <a key={label} href={path} className="navbarLink">
+                {label.toUpperCase()}
+              </a>
+            ) : (
+              <Link key={label} to={path} className="navbarLink">
+                {label.toUpperCase()}
+              </Link>
+            )
+          )}
         </nav>
 
         <button
-          className="navbar-hamburger"
+          className="navbarHamburger"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
         >
           <span
-            className="hamburger-line"
+            className="hamburgerLine"
             style={{ transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none" }}
           />
           <span
-            className="hamburger-line"
+            className="hamburgerLine"
             style={{ opacity: menuOpen ? 0 : 1 }}
           />
           <span
-            className="hamburger-line"
+            className="hamburgerLine"
             style={{ transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none" }}
           />
         </button>
       </div>
 
       {menuOpen && (
-        <nav className="mobile-menu">
-          {NAV_LINKS.map(({ label, path }) => (
-            <Link
-              key={label}
-              to={path}
-              className="mobile-menu-link"
-              onClick={() => setMenuOpen(false)}
-            >
-              {label.toUpperCase()}
-            </Link>
-          ))}
+        <nav className="mobileMenu">
+          {NAV_LINKS.map(({ label, path }) =>
+            path.includes("#") ? (
+              <a
+                key={label}
+                href={path}
+                className="mobileMenuLink"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label.toUpperCase()}
+              </a>
+            ) : (
+              <Link
+                key={label}
+                to={path}
+                className="mobileMenuLink"
+                onClick={() => setMenuOpen(false)}
+              >
+                {label.toUpperCase()}
+              </Link>
+            )
+          )}
         </nav>
       )}
     </header>

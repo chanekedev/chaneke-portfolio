@@ -20,33 +20,37 @@ export default function Footer() {
   }
 
   return (
-    <footer className="site-footer">
-      <div className="footer-grid">
-        <div className="footer-brand">
-          <img src={ASSETS.brand} alt={PORTFOLIO_INFO.brandName} className="footer-brand-logo" />
-          <p className="footer-brand-text">
+    <footer className="siteFooter">
+      <div className="footerGrid">
+        <div className="footerBrand">
+          <img src={ASSETS.brand} alt={PORTFOLIO_INFO.brandName} className="footerBrandLogo" />
+          <p className="footerBrandText">
             Creating digital experiences that blend creativity with functionality. 
             Let's build something extraordinary together.
           </p>
-          <p className="footer-copyright">
+          <p className="footerCopyright">
             © {new Date().getFullYear()} {PORTFOLIO_INFO.brandName}. All rights reserved.
           </p>
         </div>
 
-        <nav className="footer-nav">
+        <nav className="footerNav">
           <h4>Navigate</h4>
           <ul>
             {NAV_LINKS.map(({ label, path }) => (
               <li key={label}>
-                <Link to={path}>{label}</Link>
+                {path.includes("#") ? (
+                  <a href={path}>{label}</a>
+                ) : (
+                  <Link to={path}>{label}</Link>
+                )}
               </li>
             ))}
           </ul>
         </nav>
 
-        <div className="footer-social">
+        <div className="footerSocial">
           <h4>Connect</h4>
-          <div className="footer-social-links">
+          <div className="footerSocialLinks">
             {SOCIALS.map((social) => (
               <a
                 key={social.label}
@@ -54,7 +58,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="footer-social-link"
+                className="footerSocialLink"
               >
                 <img src={`/assets/svg/${social.icon}`} alt={social.label} />
               </a>
@@ -62,30 +66,30 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="footer-newsletter">
+        <div className="footerNewsletter">
           <h4>Newsletter</h4>
-          <form className="footer-newsletter-form" onSubmit={handleSubmit}>
+          <form className="footerNewsletterForm" onSubmit={handleSubmit}>
             <input
               type="email"
               placeholder="your@email.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="footer-newsletter-input"
+              className="footerNewsletterInput"
               aria-label="Email for newsletter"
             />
-            <button type="submit" className="footer-newsletter-btn">
+            <button type="submit" className="footerNewsletterBtn">
               Join the List
             </button>
             {subscribed && (
-              <p className="footer-newsletter-msg">Thanks for subscribing!</p>
+              <p className="footerNewsletterMsg">Thanks for subscribing!</p>
             )}
           </form>
         </div>
       </div>
 
-      <div className="skip-top">
+      <div className="skipTop">
         <button 
-          className="skip-top-btn" 
+          className="skipTopBtn" 
           onClick={scrollToTop}
           aria-label="Scroll to top"
         >
