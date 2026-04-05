@@ -8,22 +8,22 @@ export default function SkillBox({ skill, isActive, delay, isMobile }) {
   return (
     <Tag
       {...linkProps}
-      className={`skill-box${isActive ? " active" : ""}`}
+      className={`skillBox${isActive ? " active" : ""}`}
       style={{
         transitionDelay: isActive ? delay : "0s",
         ...(isMobile && { height: "70px" }),
         ...(skill.url && { cursor: "pointer", textDecoration: "none" }),
       }}
     >
-      <div className="skill-content">
+      <div className="skillContent">
         <img
           src={`/assets/svg/${skill.icon}`}
           alt={skill.label}
-          className="skill-icon"
+          className="skillIcon"
         />
-        <span className="skill-label">{skill.label}</span>
+        <span className="skillLabel">{skill.label}</span>
       </div>
-      <div className="skill-strip" aria-hidden="true" />
+      <div className="skillStrip" aria-hidden="true" />
     </Tag>
   )
 }

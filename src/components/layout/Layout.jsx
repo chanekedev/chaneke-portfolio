@@ -4,9 +4,9 @@ import Footer from "./Footer"
 
 export default function Layout() {
   return (
-    <div className="app-container">
+    <div className="appContainer">
       <Navbar />
-      <main className="main-content">
+      <main className="mainContent">
         <Outlet />
       </main>
       <Footer />

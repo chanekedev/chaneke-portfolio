@@ -10,10 +10,10 @@ export default function About() {
   const rightSkills = SKILLS.filter((s) => s.position.startsWith("right"))
 
   return (
-    <section className="about-section">
-      <div ref={titleRef} className="about-header">
+    <section className="aboutSection">
+      <div ref={titleRef} className="aboutHeader">
         <h2
-          className={`hero-heading anim-fade-in${titleVisible ? " anim-delay-1" : ""}`}
+          className={`heroHeading animFadeIn${titleVisible ? " animDelay1" : ""}`}
         >
           SKILL-SET
         </h2>
@@ -21,14 +21,14 @@ export default function About() {
         <a
           href={PORTFOLIO_INFO.cvUrl}
           download
-          className={`about-cv-btn anim-fade-in${titleVisible ? " anim-delay-2" : ""}`}
+          className={`aboutCvBtn animFadeIn${titleVisible ? " animDelay2" : ""}`}
         >
           DESCARGAR CV
         </a>
       </div>
 
-      <div className="about-grid">
-        <div className="about-col-left" style={{ marginTop: "-20rem" }}>
+      <div className="aboutGrid">
+        <div className="aboutColLeft" style={{ marginTop: "-20rem" }}>
           {leftSkills.map((skill, i) => (
             <SkillBox
               key={skill.id}
@@ -39,9 +39,9 @@ export default function About() {
           ))}
         </div>
 {/* EDITAR FORMA DE LINEAS EN SECCION ABOUT O*O */}
-        <div className="about-col-center">
+        <div className="aboutColCenter">
           <svg
-            className="about-connection-lines"
+            className="aboutConnectionLines"
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
           >
@@ -88,18 +88,18 @@ export default function About() {
             <img
               src={ASSETS.computer}
               alt="Retro computer"
-              className="about-computer"
+              className="aboutComputer"
             />
             <div
               ref={screenRef}
-              className={`crt-screen${screenVisible ? " active" : ""}`}
+              className={`crtScreen${screenVisible ? " active" : ""}`}
             >
-              <img src={ASSETS.iconBrand2} alt="Chaneke on screen" className="crt-brand-logo" />
+              <img src={ASSETS.iconBrand2} alt="Chaneke on screen" className="crtBrandLogo" />
             </div>
           </div>
         </div>
 
-        <div className="about-col-right" style={{ marginTop: "-20rem" }}>
+        <div className="aboutColRight" style={{ marginTop: "-20rem" }}>
           {rightSkills.map((skill, i) => (
             <SkillBox
               key={skill.id}
@@ -111,7 +111,7 @@ export default function About() {
         </div>
       </div>
 
-      <div className="about-mobile-skills">
+      <div className="aboutMobileSkills">
         {SKILLS.map((skill, i) => (
           <SkillBox
             key={`${skill.id}-m`}

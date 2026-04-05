@@ -10,31 +10,31 @@ function renderBracketed(text) {
 
 export default function Hero() {
   return (
-    <section className="hero-section">
-      <div className="hero-grid">
-        <div className="hero-content">
+    <section className="heroSection">
+      <div className="heroGrid">
+        <div className="heroContent">
           <img
             src={ASSETS.iconBrand}
             alt="Chaneke symbol"
-            className="hero-brand-mobile"
+            className="heroBrandMobile"
           />
 
-          <h1 className="hero-heading">
+          <h1 className="heroHeading">
             <span>{HERO_DATA.greeting}</span>
             <span>{HERO_DATA.name}</span>
           </h1>
 
-          <p className="hero-name">{renderBracketed(HERO_DATA.title)}</p>
+          <p className="heroName">{renderBracketed(HERO_DATA.title)}</p>
 
           <div>
             {HERO_DATA.specialties.map((item) => (
-              <p key={item} className="hero-specialty">
+              <p key={item} className="heroSpecialty">
                 {item}
               </p>
             ))}
           </div>
 
-          <div className="social-icons">
+          <div className="socialIcons">
             {SOCIALS.map((social) => (
               <a
                 key={social.label}
@@ -42,7 +42,7 @@ export default function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="social-icon"
+                className="socialIcon"
               >
                 <img src={`/assets/svg/${social.icon}`} alt={social.label} />
               </a>
@@ -50,7 +50,7 @@ export default function Hero() {
           </div>
         </div>
 
-        <div className="hero-visual">
+        <div className="heroVisual">
           <img src={ASSETS.iconBrand} alt="Chaneke symbol" />
         </div>
       </div>

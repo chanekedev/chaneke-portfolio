@@ -60,9 +60,9 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="contact-section">
-      <div ref={ref} className={`contact-container anim-fade-in${isVisible ? " anim-delay-1" : ""}`}>
-        <div className="contact-info">
+    <section id="contact" className="contactSection">
+      <div ref={ref} className={`contactContainer animFadeIn${isVisible ? " animDelay1" : ""}`}>
+        <div className="contactInfo">
           <h2>LET'S COLLABORATE</h2>
           <p>
             Have a project in mind? Let's create something amazing together.
@@ -70,7 +70,7 @@ export default function Contact() {
             I'm here to bring your vision to life.
           </p>
 
-          <div className="contact-socials">
+          <div className="contactSocials">
             {SOCIALS.map((social) => (
               <a
                 key={social.label}
@@ -78,7 +78,7 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                className="social-icon"
+                className="socialIcon"
               >
                 <img src={`/assets/svg/${social.icon}`} alt={social.label} />
               </a>
@@ -86,43 +86,43 @@ export default function Contact() {
           </div>
         </div>
 
-        <form className="contact-form" onSubmit={handleSubmit} noValidate>
-          <div className="form-group">
-            <label htmlFor="name" className="form-label">Full Name</label>
+        <form className="contactForm" onSubmit={handleSubmit} noValidate>
+          <div className="formGroup">
+            <label htmlFor="name" className="formLabel">Full Name</label>
             <input
               type="text"
               id="name"
               name="name"
               value={formData.name}
               onChange={handleChange}
-              className="form-input"
+              className="formInput"
               aria-label="Full Name"
               disabled={status === "loading"}
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email" className="form-label">Email</label>
+          <div className="formGroup">
+            <label htmlFor="email" className="formLabel">Email</label>
             <input
               type="email"
               id="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="form-input"
+              className="formInput"
               aria-label="Email Address"
               disabled={status === "loading"}
             />
           </div>
 
-          <div className="form-group">
-            <label htmlFor="subject" className="form-label">Subject</label>
+          <div className="formGroup">
+            <label htmlFor="subject" className="formLabel">Subject</label>
             <select
               id="subject"
               name="subject"
               value={formData.subject}
               onChange={handleChange}
-              className="form-select"
+              className="formSelect"
               aria-label="Subject"
               disabled={status === "loading"}
             >
@@ -134,32 +134,32 @@ export default function Contact() {
             </select>
           </div>
 
-          <div className="form-group">
-            <label htmlFor="message" className="form-label">Message</label>
+          <div className="formGroup">
+            <label htmlFor="message" className="formLabel">Message</label>
             <textarea
               id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              className="form-textarea"
+              className="formTextarea"
               aria-label="Your Message"
               disabled={status === "loading"}
             />
           </div>
 
           {error && (
-            <p className="form-message error">{error}</p>
+            <p className="formMessage error">{error}</p>
           )}
 
           {status === "success" && (
-            <p className="form-message success">
+            <p className="formMessage success">
               Message sent successfully! I'll get back to you soon.
             </p>
           )}
 
           <button
             type="submit"
-            className="form-button"
+            className="formButton"
             disabled={status === "loading"}
           >
             {status === "loading" ? "Sending..." : "Send Message"}
